@@ -7,7 +7,7 @@
 print "Content-type: text/html\n\n";
 print <<EOF
 <html>
-<head><title>Everything is OK</title></head>
+<head><title>MIKE: Everything is OK</title></head>
 <body>
 Everything is fine.
 </body>
