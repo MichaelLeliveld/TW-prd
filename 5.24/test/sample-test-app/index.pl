@@ -1,8 +1,8 @@
 #!/usr/bin/perl
 
-use Math::Round;
+#use Math::Round;
 
-round(10.2) == 10 || die "round(10.2) != 10";
+#round(10.2) == 10 || die "round(10.2) != 10";
 
 print "Content-type: text/html\n\n";
 print <<EOF
