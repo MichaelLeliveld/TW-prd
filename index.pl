@@ -10,7 +10,7 @@ print <<EOF
 <head><title>MIKE: Everything is OK</title></head>
 <body>
 <H1>Here from MIKE</H1>
-Everything is new and fine.
+Everything is new 2 and fine.
 </body>
 </html>
 EOF
