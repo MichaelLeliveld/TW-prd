@@ -9,8 +9,10 @@ print <<EOF
 <html>
 <head><title>MIKE: Everything is OK</title></head>
 <body>
+
 <H1>Here from MIKE</H1>
-Everything is very newest and fine.
+Everything is fine.
+
 </body>
 </html>
 EOF
