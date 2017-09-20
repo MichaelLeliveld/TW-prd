@@ -1,10 +1,15 @@
 #!/usr/bin/perl
 
+use strict;
+use warnings;
+
 use CGI;
 use LWP::UserAgent;
 use LWP::Protocol::https;
 
 print "Content-type: text/html\n\n";
+
+my $thisUrl = 'http://prd-aml-tradewatch.7e14.starter-us-west-2.openshiftapps.com/';
 
 my %pars     = CGI::Vars();
 my $user     = $pars{user};
@@ -19,9 +24,9 @@ if ( defined($user) && defined($password) ) {
 	eval { $response = $ua->get($url); };
 	ysloaderMonitoring::error($@) if $@;
 	if ( $response->is_success ) {
-		## foreach my $line ( split( /\n/, $response->decoded_content ) ) {
-		## }
-		print $response->decoded_content;
+		my $html = $response->decoded_content;
+		$html =~ s/<\s*[Aa]\s+[Hh][Rr][Ee][Ff]=\"([^>]+)\"\s*>/<a href=\"$thisUrl$1\">/g;
+		print $html;
 	}
 	else {
 		print "<H2>Can't get the page</H2>";
