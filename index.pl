@@ -20,7 +20,7 @@ if ( defined($user) && defined($password) ) {
 	my $host        = "tradewatch.hopto.org";
 	my $url         = "http://$host/$path";
 	my $thisHost    = 'prd-aml-tradewatch.7e14.starter-us-west-2.openshiftapps.com';
-	my $thisUrl     = "http://$host/?path=";
+	my $thisUrl     = "http://$thisHost/?path=";
 	my $credentials = "&user=$user&password=$password";
 
 	$ua->credentials( "$host:80", 'TradeWatch', $user, $password );
