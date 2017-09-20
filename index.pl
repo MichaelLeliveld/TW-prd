@@ -14,13 +14,15 @@ my $user     = $pars{user};
 my $password = $pars{password};
 my $path     = $pars{path};
 $path = 'index.pl' unless defined($path);
+my $dir = $path;
+$dir =~ s/[^\/]+$//;
 
 if ( defined($user) && defined($password) ) {
 	my $ua          = LWP::UserAgent->new();
 	my $host        = "tradewatch.hopto.org";
 	my $url         = "http://$host/$path";
 	my $thisHost    = 'prd-aml-tradewatch.7e14.starter-us-west-2.openshiftapps.com';
-	my $thisUrl     = "http://$thisHost/?path=";
+	my $thisUrl     = "http://$thisHost/?path=$dir";
 	my $credentials = "&user=$user&password=$password";
 
 	$ua->credentials( "$host:80", 'TradeWatch', $user, $password );
