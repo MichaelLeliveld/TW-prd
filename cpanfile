@@ -1,1 +1,2 @@
-requires 'Math::Round', '== 0.06';
+requires 'LWP::UserAgent';
+requires 'LWP::Protocol::https';
