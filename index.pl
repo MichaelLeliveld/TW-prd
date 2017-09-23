@@ -27,7 +27,7 @@ if ( defined($user) && defined($password) ) {
 	my $thisUrl     = "http://$thisHost/?path=$dir";
 	my $credentials = "&user=$user&password=$password";
 
-	$ua->credentials( "$host:80", 'TradeWatch', $user, $password );
+	$ua->credentials( "$host:443", 'TradeWatch', $user, $password );
 
 	my $response = undef;
 	eval { $response = $ua->get($url); };
