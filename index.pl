@@ -3,6 +3,8 @@
 use strict;
 use warnings;
 
+$ENV{'PERL_LWP_SSL_VERIFY_HOSTNAME'} = 0;
+
 use CGI;
 use LWP::UserAgent;
 use LWP::Protocol::https;
