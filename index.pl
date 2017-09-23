@@ -24,7 +24,7 @@ if ( defined($user) && defined($password) ) {
 	my $host        = "tradewatch.hopto.org";
 	my $url         = "https://$host/$path";
 	my $thisHost    = 'prd-aml-tradewatch.7e14.starter-us-west-2.openshiftapps.com';
-	my $thisUrl     = "http://$thisHost/?path=$dir";
+	my $thisUrl     = "https://$thisHost/?path=$dir";
 	my $credentials = "&user=$user&password=$password";
 
 	$ua->credentials( "$host:443", 'TradeWatch', $user, $password );
