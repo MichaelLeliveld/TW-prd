@@ -20,7 +20,7 @@ $dir =~ s/[^\/]+$//;
 if ( defined($user) && defined($password) ) {
 	my $ua          = LWP::UserAgent->new();
 	my $host        = "tradewatch.hopto.org";
-	my $url         = "http://$host/$path";
+	my $url         = "https://$host/$path";
 	my $thisHost    = 'prd-aml-tradewatch.7e14.starter-us-west-2.openshiftapps.com';
 	my $thisUrl     = "http://$thisHost/?path=$dir";
 	my $credentials = "&user=$user&password=$password";
