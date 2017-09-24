@@ -10,6 +10,7 @@ use LWP::UserAgent;
 use LWP::Protocol::https;
 
 print "Content-type: text/html\n\n";
+print "<link rel=\"icon\" href=\"/favicon.ico\">";
 
 my %pars     = CGI::Vars();
 my $user     = $pars{user};
