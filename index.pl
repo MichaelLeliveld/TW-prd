@@ -18,6 +18,7 @@ my $path     = $pars{path};
 $path = 'index.pl' unless defined($path);
 my $dir = $path;
 $dir =~ s/[^\/]+$//;
+$dir =~ s/\?/&/g;
 
 if ( defined($user) && defined($password) ) {
 	my $ua          = LWP::UserAgent->new();
@@ -35,8 +36,8 @@ if ( defined($user) && defined($password) ) {
 	if ( $response->is_success ) {
 		my $html = $response->decoded_content;
 		$html =~ s/<[Hh][Ee][Aa][Dd]>/<head>\n  <link rel=\"icon\" href=\"\/favicon.ico\">/;
-		$html =~ s/<\s*[Aa]\s+[Hh][Rr][Ee][Ff]=\"([^>]+)\"\s*>/<a href=\"$thisUrl$1$credentials\">/g;
-		$html =~ s/<form([^>]+) action=\"([^\"]+)\"([^>]*)>/<form$1 action=\"$thisUrl$2$credentials\"$3>/g;
+		$html =~ s/<\s*[Aa]\s+[Hh][Rr][Ee][Ff]=\"([^>]+)\"\s*>/<a href=\"$thisUrl$1$credentials\">/sg;
+		$html =~ s/<form([^>]+) action=\"([^\"]+)\"([^>]*)>/<form$1 action=\"$thisUrl$2$credentials\"$3>/sg;
 		print $html;
 	}
 	else {
