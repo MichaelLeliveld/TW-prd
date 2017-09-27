@@ -18,7 +18,9 @@ my $path     = $pars{path};
 $path = 'index.pl' unless defined($path);
 my $dir = $path;
 $dir =~ s/[^\/]+$//;
-$dir =~ s/\?/&/g;
+my $input = "<input type=\"hidden\" name=\"user\" value=\"$user\" id=\"user\" />\n";
+$input .= "<input type=\"hidden\" name=\"password\" value=\"$password\" id=\"password\" />\n";
+$input .= "<input type=\"hidden\" name=\"path\" value=\"$path\" id=\"path\" />\n";
 
 if ( defined($user) && defined($password) ) {
 	my $ua          = LWP::UserAgent->new();
@@ -39,6 +41,7 @@ if ( defined($user) && defined($password) ) {
 		$html =~ s/<\s*[Aa]\s+[Hh][Rr][Ee][Ff]=\"([^>]+)\"\s*>/<a href=\"$thisUrl$1$credentials\">/sg;
 		$html =~ s/<form([^>]+) action=\"([^\"]*)\?([^\"]*)\"/<form$1 action=\"$2&$3\"/sg;
 		$html =~ s/<form([^>]+) action=\"([^\"]+)\"/<form$1 action=\"$thisUrl$2$credentials\"/sg;
+		$html =~ s/<\/form>/$input\n<\/form>/sg;
 		print $html;
 	}
 	else {
