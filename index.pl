@@ -37,7 +37,8 @@ if ( defined($user) && defined($password) ) {
 		my $html = $response->decoded_content;
 		$html =~ s/<[Hh][Ee][Aa][Dd]>/<head>\n  <link rel=\"icon\" href=\"\/favicon.ico\">/;
 		$html =~ s/<\s*[Aa]\s+[Hh][Rr][Ee][Ff]=\"([^>]+)\"\s*>/<a href=\"$thisUrl$1$credentials\">/sg;
-		$html =~ s/<form([^>]+) action=\"([^\"]+)\"([^>]*)>/<form$1 action=\"$thisUrl$2$credentials\"$3>/sg;
+		$html =~ s/<form([^>]+) action=\"([^\"]*)\?([^\"]*)\"/<form$1 action=\"$2&$3\"/sg;
+		$html =~ s/<form([^>]+) action=\"([^\"]+)\"/<form$1 action=\"$thisUrl$2$credentials\"/sg;
 		print $html;
 	}
 	else {
