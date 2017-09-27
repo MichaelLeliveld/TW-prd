@@ -10,7 +10,6 @@ use LWP::UserAgent;
 use LWP::Protocol::https;
 
 print "Content-type: text/html\n\n";
-print "";
 
 my %pars     = CGI::Vars();
 my $user     = $pars{user};
@@ -35,8 +34,9 @@ if ( defined($user) && defined($password) ) {
 	ysloaderMonitoring::error($@) if $@;
 	if ( $response->is_success ) {
 		my $html = $response->decoded_content;
-		$html =~ s/<[Hh][Ee][Aa][Dd]>/<head>\n<link rel=\"icon\" href=\"\/favicon.ico\">/;
+		$html =~ s/<[Hh][Ee][Aa][Dd]>/<head>\n  <link rel=\"icon\" href=\"\/favicon.ico\">/;
 		$html =~ s/<\s*[Aa]\s+[Hh][Rr][Ee][Ff]=\"([^>]+)\"\s*>/<a href=\"$thisUrl$1$credentials\">/g;
+		$html =~ s/<form([^>]+) action=\"([^\"]+)\"([^>]*)>/<form$1 action=\"$thisUrl$2$credentials\"$3>/g;
 		print $html;
 	}
 	else {
