@@ -18,9 +18,6 @@ my $path     = $pars{path};
 $path = 'index.pl' unless defined($path);
 my $dir = $path;
 $dir =~ s/[^\/]+$//;
-my $input = "<input type=\"hidden\" name=\"user\" value=\"$user\" id=\"user\" />\n";
-$input .= "<input type=\"hidden\" name=\"password\" value=\"$password\" id=\"password\" />\n";
-$input .= "<input type=\"hidden\" name=\"path\" value=\"$path\" id=\"path\" />\n";
 
 if ( defined($user) && defined($password) ) {
 	my $ua          = LWP::UserAgent->new();
@@ -32,6 +29,9 @@ if ( defined($user) && defined($password) ) {
 
 	$ua->credentials( "$host:443", 'TradeWatch', $user, $password );
 
+	my $input = "<input type=\"hidden\" name=\"user\" value=\"$user\" id=\"user\" />\n";
+	$input .= "<input type=\"hidden\" name=\"password\" value=\"$password\" id=\"password\" />\n";
+	$input .= "<input type=\"hidden\" name=\"path\" value=\"$path\" id=\"path\" />\n";
 	my $response = undef;
 	eval { $response = $ua->get($url); };
 	ysloaderMonitoring::error($@) if $@;
